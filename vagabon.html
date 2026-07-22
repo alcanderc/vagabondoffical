@@ -1,0 +1,3182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vagabond Apparel</title>
+<meta name="description" content="VAGABOND — crafted for elevation. Small-batch streetwear from New York City.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Bodoni+Moda:ital,wght@1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --black:#000000;
+  --white:#FFFFFF;
+  --ash:#EAEAEA;
+  --charcoal:#141414;
+  --charcoal-2:#1F1F1F;
+  --line:rgba(255,255,255,.12);
+  --line-dark:rgba(0,0,0,.1);
+  --grey-on-black:#9A9A9A;
+  --grey-on-white:#5C5C5C;
+  --err:#D9432F;
+
+  --font-display:"Archivo", sans-serif;
+  --font-serif:"Bodoni Moda", serif;
+  --font-body:"Inter", sans-serif;
+
+  --ease-luxury:cubic-bezier(.16,1,.3,1);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--black);
+  color:var(--white);
+  font-family:var(--font-body);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+img,svg{
+  display:block;
+  max-width:100%;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button{
+  font:inherit;
+  cursor:pointer;
+  border:none;
+  background:none;
+  color:inherit;
+}
+
+ul{
+  list-style:none;
+}
+
+:focus-visible{
+  outline:1px solid var(--white);
+  outline-offset:4px;
+}
+
+@media (hover:hover) and (pointer:fine){
+  body{
+    cursor:none;
+  }
+}
+
+/* ---------- CUSTOM CURSOR ---------- */
+
+.cursor{
+  position:fixed;
+  top:0;
+  left:0;
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  border:1px solid var(--white);
+  pointer-events:none;
+  z-index:9999;
+  transform:translate(-50%,-50%);
+  mix-blend-mode:difference;
+  transition:
+    width .25s var(--ease-luxury),
+    height .25s var(--ease-luxury),
+    background .25s ease;
+}
+
+.cursor.is-active{
+  width:44px;
+  height:44px;
+  background:rgba(255,255,255,.15);
+}
+
+/* ---------- SECTION LABEL ---------- */
+
+.label{
+  font-family:var(--font-body);
+  font-weight:600;
+  font-size:.72rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--grey-on-black);
+  display:inline-flex;
+  align-items:center;
+  gap:.7em;
+}
+
+.label::before{
+  content:"";
+  width:26px;
+  height:1px;
+  background:var(--grey-on-black);
+}
+
+.on-white .label{
+  color:var(--grey-on-white);
+}
+
+.on-white .label::before{
+  background:var(--grey-on-white);
+}
+
+/* ---------- BUTTONS ---------- */
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.6rem;
+  padding:1.05rem 2.3rem;
+  font-family:var(--font-body);
+  font-weight:600;
+  font-size:.82rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  border-radius:100px;
+  transition:
+    transform .4s var(--ease-luxury),
+    background .3s ease,
+    color .3s ease,
+    border-color .3s ease;
+}
+
+.btn--primary{
+  background:var(--white);
+  color:var(--black);
+}
+
+.btn--primary:hover{
+  background:var(--ash);
+}
+
+.btn--outline{
+  border:1px solid var(--line);
+  color:var(--white);
+}
+
+.btn--outline:hover{
+  border-color:var(--white);
+}
+
+.on-white .btn--outline{
+  border-color:var(--line-dark);
+  color:var(--black);
+}
+
+.on-white .btn--outline:hover{
+  border-color:var(--black);
+}
+
+.btn[disabled]{
+  opacity:.4;
+  cursor:not-allowed;
+}
+
+.magnetic{
+  will-change:transform;
+}
+
+/* ---------- NAV ---------- */
+
+.nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:300;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  padding:26px 32px;
+  background:transparent;
+  border-bottom:1px solid transparent;
+  transition:
+    background .4s ease,
+    border-color .4s ease,
+    padding .4s ease;
+}
+
+.nav.is-solid{
+  background:rgba(0,0,0,.85);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-color:var(--line);
+  padding:16px 32px;
+}
+
+.nav__left,
+.nav__right{
+  display:flex;
+  align-items:center;
+  gap:1.3rem;
+}
+
+.nav__right{
+  justify-self:end;
+}
+
+.nav__icon-btn{
+  position:relative;
+  padding:.35rem;
+  display:flex;
+}
+
+.nav__icon-btn svg{
+  width:19px;
+  height:19px;
+}
+
+.nav__logo{
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:1.15rem;
+  letter-spacing:.14em;
+}
+
+.nav__count{
+  position:absolute;
+  top:-5px;
+  right:-7px;
+  background:var(--white);
+  color:var(--black);
+  font-size:.6rem;
+  font-weight:700;
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  transform:scale(.5);
+  transition:
+    opacity .2s ease,
+    transform .2s ease;
+}
+
+.nav__count.is-visible{
+  opacity:1;
+  transform:scale(1);
+}
+
+.nav__toggle{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  padding:.4rem;
+}
+
+.nav__toggle span{
+  width:22px;
+  height:1.5px;
+  background:var(--white);
+  transition:
+    transform .3s ease,
+    opacity .3s ease;
+}
+
+/* ---------- SIDE MENU ---------- */
+
+.menu-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .4s ease;
+  z-index:400;
+}
+
+.menu-overlay.is-open{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.menu-panel{
+  position:fixed;
+  top:0;
+  left:0;
+  bottom:0;
+  width:min(400px,86vw);
+  background:var(--black);
+  border-right:1px solid var(--line);
+  z-index:401;
+  padding:32px;
+  transform:translateX(-100%);
+  transition:transform .5s var(--ease-luxury);
+  display:flex;
+  flex-direction:column;
+}
+
+.menu-overlay.is-open .menu-panel{
+  transform:translateX(0);
+}
+
+.menu-panel__close{
+  align-self:flex-end;
+  padding:.5rem;
+}
+
+.menu-panel__close svg{
+  width:19px;
+  height:19px;
+}
+
+.menu-panel__links{
+  margin-top:3rem;
+  display:flex;
+  flex-direction:column;
+}
+
+.menu-panel__links a{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:2.1rem;
+  padding:.5rem 0;
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+  position:relative;
+}
+
+.menu-panel__cta{
+  margin-top:auto;
+  padding-top:2rem;
+}
+
+/* ---------- SEARCH OVERLAY ---------- */
+
+.search-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.97);
+  z-index:400;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .4s ease;
+}
+
+.search-overlay.is-open{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.search-overlay__inner{
+  width:min(700px,88vw);
+  text-align:center;
+}
+
+.search-overlay__input{
+  width:100%;
+  background:transparent;
+  border:none;
+  border-bottom:1px solid var(--line);
+  font-family:var(--font-display);
+  font-size:clamp(1.6rem,5vw,2.6rem);
+  color:var(--white);
+  padding:.6rem 0;
+  text-align:center;
+}
+
+.search-overlay__input::placeholder{
+  color:var(--grey-on-black);
+}
+
+.search-overlay__close{
+  position:absolute;
+  top:28px;
+  right:32px;
+  padding:.5rem;
+}
+
+.search-overlay__close svg{
+  width:20px;
+  height:20px;
+}
+
+.search-overlay__results{
+  margin-top:1.5rem;
+  font-family:var(--font-body);
+  color:var(--grey-on-black);
+  font-size:.9rem;
+}
+
+/* ---------- HERO ---------- */
+
+.hero{
+  position:relative;
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+  padding:120px 24px 60px;
+}
+
+.hero__bg{
+  position:absolute;
+  inset:-5%;
+  z-index:0;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,.07), transparent 45%),
+    radial-gradient(circle at 75% 70%, rgba(255,255,255,.05), transparent 50%),
+    linear-gradient(160deg, #000 0%, #0c0c0c 45%, #000 100%);
+  animation:heroZoom 22s var(--ease-luxury) infinite alternate;
+}
+
+@keyframes heroZoom{
+  from{
+    transform:scale(1);
+  }
+  to{
+    transform:scale(1.12);
+  }
+}
+
+.hero__grain{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  opacity:.05;
+  pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.hero__content{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.hero__wordmark-stage{
+  perspective:1600px;
+  width:min(560px,88vw);
+  height:clamp(70px,13vw,120px);
+  margin-top:1.8rem;
+}
+
+.hero__wordmark-spin{
+  position:relative;
+  width:100%;
+  height:100%;
+  transform-style:preserve-3d;
+  animation:spinY 8s linear infinite;
+}
+
+.hero__wordmark-spin:hover{
+  animation-duration:2.6s;
+}
+
+.wm-face{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  backface-visibility:hidden;
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:clamp(2.6rem,7.4vw,5.2rem);
+  letter-spacing:.06em;
+  color:var(--white);
+  white-space:nowrap;
+  text-shadow:0 0 50px rgba(255,255,255,.25);
+}
+
+.wm-face--back{
+  transform:rotateY(180deg);
+}
+
+@keyframes spinY{
+  to{
+    transform:rotateY(360deg);
+  }
+}
+
+.hero__slogan{
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-weight:500;
+  font-size:clamp(1.1rem,2.6vw,1.5rem);
+  color:var(--grey-on-black);
+  margin-top:1.6rem;
+  opacity:0;
+  transform:translateY(18px);
+  animation:riseIn 1.2s var(--ease-luxury) 1.6s forwards;
+}
+
+@keyframes riseIn{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.hero__ctas{
+  display:flex;
+  gap:1rem;
+  margin-top:2.6rem;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.hero__scroll-cue{
+  position:absolute;
+  bottom:34px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.6rem;
+  font-family:var(--font-body);
+  font-size:.65rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--grey-on-black);
+}
+
+.hero__scroll-cue span{
+  width:1px;
+  height:34px;
+  background:linear-gradient(var(--grey-on-black),transparent);
+  animation:scrollCue 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollCue{
+  0%{
+    transform:scaleY(0);
+    transform-origin:top;
+  }
+  50%{
+    transform:scaleY(1);
+    transform-origin:top;
+  }
+  50.01%{
+    transform-origin:bottom;
+  }
+  100%{
+    transform:scaleY(0);
+    transform-origin:bottom;
+  }
+}
+
+/* ---------- MARQUEE STRIP ---------- */
+
+.strip{
+  background:var(--white);
+  color:var(--black);
+  overflow:hidden;
+  white-space:nowrap;
+  padding:13px 0;
+}
+
+.strip__track{
+  display:inline-flex;
+  width:max-content;
+  animation:marquee 26s linear infinite;
+}
+
+.strip__track span{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:.85rem;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  padding:0 2rem;
+}
+
+@keyframes marquee{
+  from{
+    transform:translateX(0);
+  }
+  to{
+    transform:translateX(-50%);
+  }
+}
+
+/* ---------- FEATURED ---------- */
+
+.featured{
+  padding:130px 32px;
+  max-width:1280px;
+  margin-inline:auto;
+}
+
+.featured__head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  flex-wrap:wrap;
+  gap:1.5rem;
+  margin-bottom:3.5rem;
+}
+
+.featured__title{
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:clamp(2.4rem,5.6vw,4.2rem);
+  line-height:.95;
+  margin-top:.6rem;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:2rem;
+}
+
+.card{
+  background:var(--charcoal);
+  border:1px solid var(--line);
+  overflow:hidden;
+  transition:box-shadow .4s ease;
+  will-change:transform;
+}
+
+.card:hover{
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.7);
+}
+
+.card__swatch{
+  aspect-ratio:4/5;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:linear-gradient(160deg,#000 0%,var(--charcoal-2) 100%);
+}
+
+.card__photo{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:1;
+  transition:transform .6s var(--ease-luxury);
+}
+
+.card:hover .card__photo{
+  transform:scale(1.06);
+}
+
+.card__icon{
+  width:32%;
+  height:auto;
+  color:var(--ash);
+  opacity:.9;
+  position:relative;
+  z-index:0;
+  transition:transform .6s var(--ease-luxury);
+}
+
+.card:hover .card__icon{
+  transform:scale(1.06);
+}
+
+.card__tag{
+  position:absolute;
+  top:14px;
+  left:14px;
+  z-index:2;
+  font-family:var(--font-body);
+  font-weight:600;
+  font-size:.62rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  background:var(--white);
+  color:var(--black);
+  padding:5px 11px;
+  border-radius:100px;
+}
+
+.card__tag--sold{
+  background:var(--err);
+  color:var(--white);
+}
+
+.card__wish{
+  position:absolute;
+  top:12px;
+  right:12px;
+  z-index:2;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  background:rgba(0,0,0,.5);
+  backdrop-filter:blur(6px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:transform .3s var(--ease-luxury);
+}
+
+.card__wish:hover{
+  transform:scale(1.12);
+}
+
+.card__wish svg{
+  width:16px;
+  height:16px;
+  stroke:var(--white);
+  fill:none;
+  transition:fill .2s ease;
+}
+
+.card__wish.is-saved svg{
+  fill:var(--white);
+}
+
+.card__body{
+  padding:1.4rem 1.4rem 1.6rem;
+  display:flex;
+  flex-direction:column;
+  gap:.4rem;
+}
+
+.card__name{
+  font-family:var(--font-body);
+  font-weight:600;
+  font-size:1rem;
+}
+
+.card__price{
+  color:var(--grey-on-black);
+  font-size:.88rem;
+}
+
+.card__cta{
+  margin-top:1rem;
+  width:100%;
+  background:var(--white);
+  color:var(--black);
+  padding:.85rem;
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  border-radius:100px;
+  transition:
+    background .3s ease,
+    transform .3s var(--ease-luxury);
+}
+
+.card__cta:hover{
+  background:var(--ash);
+}
+
+/* ---------- BRAND STORY ---------- */
+
+.story{
+  padding:150px 32px;
+  max-width:1280px;
+  margin-inline:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4rem;
+  align-items:center;
+}
+
+.story__word{
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:clamp(3rem,9vw,7rem);
+  line-height:.86;
+}
+
+.story__word em{
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-weight:500;
+  color:var(--grey-on-black);
+}
+
+.story__text{
+  font-size:1.15rem;
+  color:var(--grey-on-black);
+  max-width:46ch;
+}
+
+.story__text strong{
+  color:var(--white);
+  font-weight:600;
+}
+
+/* ---------- TIMELINE ---------- */
+
+.timeline{
+  background:var(--white);
+  color:var(--black);
+  padding:130px 32px;
+}
+
+.timeline__inner{
+  max-width:900px;
+  margin-inline:auto;
+  position:relative;
+}
+
+.timeline__spine{
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:1px;
+  background:rgba(0,0,0,.1);
+}
+
+.timeline__spine-fill{
+  width:100%;
+  height:0%;
+  background:var(--black);
+}
+
+.timeline__row{
+  display:grid;
+  grid-template-columns:120px 1fr;
+  gap:2rem;
+  padding:2.2rem 0;
+  border-top:1px solid var(--line-dark);
+}
+
+.timeline__row:last-child{
+  border-bottom:1px solid var(--line-dark);
+}
+
+.timeline__year{
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:1.3rem;
+}
+
+.timeline__desc{
+  font-size:1.05rem;
+  color:var(--grey-on-white);
+  max-width:50ch;
+}
+
+/* ---------- NEWSLETTER ---------- */
+
+.newsletter{
+  position:relative;
+  padding:150px 32px;
+  text-align:center;
+  overflow:hidden;
+}
+
+.newsletter__bg{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 50% 40%, #1a1a1a, #000 70%);
+  z-index:0;
+}
+
+.newsletter__inner{
+  position:relative;
+  z-index:1;
+  max-width:600px;
+  margin-inline:auto;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--line);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  padding:3.5rem 2.5rem;
+  border-radius:24px;
+}
+
+.newsletter__title{
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:clamp(1.9rem,4.6vw,2.8rem);
+  margin-top:.7rem;
+}
+
+.newsletter__sub{
+  color:var(--grey-on-black);
+  margin:1rem auto 0;
+  max-width:40ch;
+}
+
+.newsletter__form{
+  display:flex;
+  max-width:420px;
+  margin:2rem auto 0;
+  gap:.6rem;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.newsletter__input{
+  flex:1;
+  min-width:200px;
+  padding:1rem 1.2rem;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+  color:var(--white);
+  font-family:var(--font-body);
+  font-size:.92rem;
+  border-radius:100px;
+  transition:
+    border-color .3s ease,
+    background .3s ease;
+}
+
+.newsletter__input:focus{
+  border-color:var(--white);
+  background:rgba(255,255,255,.07);
+}
+
+.newsletter__input::placeholder{
+  color:var(--grey-on-black);
+}
+
+.newsletter__msg{
+  margin-top:1rem;
+  font-size:.85rem;
+  min-height:1.2em;
+}
+
+.newsletter__msg.is-ok{
+  color:var(--white);
+}
+
+.newsletter__msg.is-error{
+  color:var(--err);
+}
+
+/* ---------- FOOTER ---------- */
+
+.footer{
+  padding:70px 32px 30px;
+  border-top:1px solid var(--line);
+}
+
+.footer__top{
+  max-width:1280px;
+  margin-inline:auto;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:3rem;
+  padding-bottom:3rem;
+}
+
+.footer__logo{
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:1.8rem;
+  letter-spacing:.08em;
+}
+
+.footer__tag{
+  font-size:.85rem;
+  color:var(--grey-on-black);
+  margin-top:.6rem;
+  max-width:32ch;
+}
+
+.footer__cols{
+  display:flex;
+  gap:4rem;
+  flex-wrap:wrap;
+}
+
+.footer__col h4{
+  font-weight:600;
+  font-size:.68rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--grey-on-black);
+  margin-bottom:1rem;
+}
+
+.footer__col a{
+  display:block;
+  font-size:.9rem;
+  padding:.3rem 0;
+  color:var(--white);
+  transition:opacity .2s ease;
+}
+
+.footer__col a:hover{
+  opacity:.6;
+}
+
+.footer__bottom{
+  max-width:1280px;
+  margin-inline:auto;
+  border-top:1px solid var(--line);
+  padding-top:1.6rem;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:.75rem;
+  font-size:.72rem;
+  color:var(--grey-on-black);
+}
+
+/* ---------- CART DRAWER ---------- */
+
+.cart-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  z-index:500;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .4s ease;
+}
+
+.cart-overlay.is-open{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.cart-drawer{
+  position:fixed;
+  top:0;
+  right:0;
+  bottom:0;
+  width:min(420px,90vw);
+  background:var(--black);
+  border-left:1px solid var(--line);
+  z-index:501;
+  display:flex;
+  flex-direction:column;
+  transform:translateX(100%);
+  transition:transform .5s var(--ease-luxury);
+}
+
+.cart-overlay.is-open .cart-drawer{
+  transform:translateX(0);
+}
+
+.cart-drawer__head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:26px 28px;
+  border-bottom:1px solid var(--line);
+}
+
+.cart-drawer__head h3{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:1.1rem;
+  letter-spacing:.04em;
+}
+
+.cart-drawer__close svg{
+  width:18px;
+  height:18px;
+}
+
+.cart-drawer__ship{
+  padding:18px 28px;
+  border-bottom:1px solid var(--line);
+}
+
+.cart-drawer__ship p{
+  font-size:.78rem;
+  color:var(--grey-on-black);
+  margin-bottom:.6rem;
+}
+
+.cart-drawer__bar{
+  height:3px;
+  background:var(--charcoal-2);
+  border-radius:2px;
+  overflow:hidden;
+}
+
+.cart-drawer__bar-fill{
+  height:100%;
+  background:var(--white);
+  width:0%;
+  transition:width .5s var(--ease-luxury);
+}
+
+.cart-drawer__items{
+  flex:1;
+  overflow-y:auto;
+  padding:10px 28px;
+}
+
+.cart-drawer__empty{
+  color:var(--grey-on-black);
+  font-size:.9rem;
+  padding:2rem 0;
+  text-align:center;
+}
+
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:1rem;
+  padding:16px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.cart-item__name{
+  font-size:.88rem;
+  font-weight:500;
+}
+
+.cart-item__price{
+  font-size:.82rem;
+  color:var(--grey-on-black);
+  margin-top:.2rem;
+}
+
+.cart-item__remove{
+  font-size:.72rem;
+  color:var(--grey-on-black);
+  text-decoration:underline;
+  margin-top:.3rem;
+}
+
+.cart-drawer__footer{
+  padding:22px 28px 28px;
+  border-top:1px solid var(--line);
+}
+
+.cart-drawer__subtotal{
+  display:flex;
+  justify-content:space-between;
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:1.05rem;
+  margin-bottom:1rem;
+}
+
+.cart-drawer__note{
+  font-size:.75rem;
+  color:var(--grey-on-black);
+  margin-top:.7rem;
+  text-align:center;
+  min-height:1.2em;
+}
+
+/* ---------- SCROLL PROGRESS ---------- */
+
+.scroll-progress{
+  position:fixed;
+  top:0;
+  left:0;
+  height:2px;
+  background:var(--white);
+  z-index:9998;
+  width:0%;
+}
+
+/* ---------- REVEAL ---------- */
+
+.reveal{
+  opacity:0;
+  transform:translateY(32px);
+  transition:
+    opacity .9s var(--ease-luxury),
+    transform .9s var(--ease-luxury);
+}
+
+.reveal.is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* Text mask-reveal */
+
+.mask{
+  overflow:hidden;
+  display:block;
+}
+
+.mask__inner{
+  display:block;
+  transform:translateY(112%);
+  transition:transform 1.1s var(--ease-luxury);
+}
+
+.mask.is-visible .mask__inner{
+  transform:translateY(0);
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width:900px){
+  .story{
+    grid-template-columns:1fr;
+    text-align:left;
+    gap:2rem;
+  }
+
+  .timeline__row{
+    grid-template-columns:80px 1fr;
+  }
+}
+
+@media (max-width:640px){
+  .nav{
+    padding:18px 20px;
+  }
+
+  .nav.is-solid{
+    padding:12px 20px;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{
+    scroll-behavior:auto;
+  }
+
+  .hero__wordmark-spin,
+  .hero__bg,
+  .strip__track,
+  .hero__scroll-cue span{
+    animation:none;
+  }
+
+  .hero__slogan{
+    opacity:1;
+    transform:none;
+    animation:none;
+  }
+
+  .reveal{
+    opacity:1;
+    transform:none;
+    transition:none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="cursor" id="cursor"></div>
+
+<nav class="nav" id="nav">
+
+  <div class="nav__left">
+
+    <button class="nav__icon-btn" id="menuOpenBtn" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <line x1="3" y1="7" x2="21" y2="7"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="17" x2="21" y2="17"/>
+      </svg>
+    </button>
+
+    <button class="nav__icon-btn" id="searchOpenBtn" aria-label="Search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <circle cx="11" cy="11" r="7"/>
+        <line x1="21" y1="21" x2="16.5" y2="16.5"/>
+      </svg>
+    </button>
+
+  </div>
+
+  <a href="#top" class="nav__logo">VAGABOND</a>
+
+  <div class="nav__right">
+
+    <button class="nav__icon-btn" id="wishBtn" aria-label="Saved items">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 20s-7.5-4.6-10-9.3C.4 7.4 2 4 5.4 4c2 0 3.4 1.1 4.1 2.3.5.8.5.8 1 0C11.2 5.1 12.6 4 14.6 4 18 4 19.6 7.4 18 10.7 15.5 15.4 12 20 12 20Z"/>
+      </svg>
+      <span class="nav__count" id="wishCount">0</span>
+    </button>
+
+    <button class="nav__icon-btn" id="cartOpenBtn" aria-label="View bag">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 8h12l-1 12H7L6 8Z"/>
+        <path d="M9 8a3 3 0 0 1 6 0"/>
+      </svg>
+      <span class="nav__count" id="cartCount">0</span>
+    </button>
+
+    <button class="nav__toggle" id="navToggle" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+
+</nav>
+
+<div class="menu-overlay" id="menuOverlay">
+
+  <div class="menu-panel">
+
+    <button class="menu-panel__close" id="menuCloseBtn" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <line x1="5" y1="5" x2="19" y2="19"/>
+        <line x1="19" y1="5" x2="5" y2="19"/>
+      </svg>
+    </button>
+
+    <nav class="menu-panel__links">
+      <a href="#top">Home</a>
+      <a href="#featured">Collection</a>
+      <a href="#story">Story</a>
+      <a href="#timeline">Journey</a>
+      <a href="#join">Contact</a>
+    </nav>
+
+    <div class="menu-panel__cta">
+      <button class="btn btn--primary" id="menuDiscountBtn" style="width:100%;">
+        Get 10% Off
+      </button>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="search-overlay" id="searchOverlay">
+
+  <button class="search-overlay__close" id="searchCloseBtn" aria-label="Close search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+      <line x1="5" y1="5" x2="19" y2="19"/>
+      <line x1="19" y1="5" x2="5" y2="19"/>
+    </svg>
+  </button>
+
+  <div class="search-overlay__inner">
+
+    <span class="label" style="justify-content:center;">
+      Search
+    </span>
+
+    <input
+      type="text"
+      class="search-overlay__input"
+      id="searchInput"
+      placeholder="Search the collection…"
+      aria-label="Search products"
+    >
+
+    <p class="search-overlay__results" id="searchResults"></p>
+
+  </div>
+
+</div>
+
+<header class="hero" id="top">
+
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="hero__grain" aria-hidden="true"></div>
+
+  <div class="hero__content">
+
+    <span class="label">
+      Est. 2024 — New York City
+    </span>
+
+    <div class="hero__wordmark-stage">
+
+      <div class="hero__wordmark-spin">
+
+        <div class="wm-face wm-face--front">
+          VAGABOND
+        </div>
+
+        <div class="wm-face wm-face--back">
+          VAGABOND
+        </div>
+
+      </div>
+
+    </div>
+
+    <p class="hero__slogan">
+      Move different.
+    </p>
+
+    <div class="hero__ctas">
+
+      <a href="#featured" class="btn btn--primary magnetic" id="magneticCta">
+        Shop Collection
+      </a>
+
+      <button class="btn btn--outline magnetic" id="heroDiscountBtn">
+        10% Off First Order
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="hero__scroll-cue" aria-hidden="true">
+    <span></span>
+    Scroll
+  </div>
+
+</header>
+
+<div class="strip" aria-hidden="true">
+
+  <div class="strip__track">
+
+    <span>Small batch</span>
+    <span>New York City</span>
+    <span>Crafted for elevation</span>
+    <span>Limited runs</span>
+
+    <span>Small batch</span>
+    <span>New York City</span>
+    <span>Crafted for elevation</span>
+    <span>Limited runs</span>
+
+  </div>
+
+</div>
+
+<section class="featured" id="featured">
+
+  <div class="featured__head reveal">
+
+    <div>
+
+      <span class="label">
+        The Collection
+      </span>
+
+      <h2 class="featured__title mask">
+        <span class="mask__inner">
+          Latest<br>Drop.
+        </span>
+      </h2>
+
+    </div>
+
+  </div>
+
+  <div class="grid" id="productGrid">
+
+    <!-- PRODUCT 1 -->
+
+    <article
+      class="card reveal"
+      data-name="baddie addicted graphic boxy tee"
+      data-key="baddie"
+    >
+
+      <div class="card__swatch">
+
+        <img
+          class="card__photo"
+          src="images/baddie-addicted-graphic-boxy-tee.jpg.webp"
+          alt="Baddie Addicted Graphic Boxy Tee"
+          loading="lazy"
+        >
+
+        <span class="card__tag">
+          Boxy Tee
+        </span>
+
+        <button class="card__wish" aria-label="Save item" data-wish>
+
+          <svg viewBox="0 0 24 24">
+            <path d="M12 20s-7.5-4.6-10-9.3C.4 7.4 2 4 5.4 4c2 0 3.4 1.1 4.1 2.3.5.8.5.8 1 0C11.2 5.1 12.6 4 14.6 4 18 4 19.6 7.4 18 10.7 15.5 15.4 12 20 12 20Z"/>
+          </svg>
+
+        </button>
+
+        <svg
+          class="card__icon"
+          viewBox="0 0 48 48"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M17 7 10 10 6 16l5 4.5L13 18v22h22V18l2 2.5L42 16l-4-6-7-3c-1 2.5-3.5 4-7 4s-6-1.5-7-4Z"/>
+        </svg>
+
+      </div>
+
+      <div class="card__body">
+
+        <div class="card__name">
+          Baddie Addicted Graphic Boxy Tee
+        </div>
+
+        <div class="card__price">
+          $35.00
+        </div>
+
+        <button class="card__cta btn--add" data-key="baddie">
+          Add to Bag
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- PRODUCT 2 -->
+
+    <article
+      class="card reveal"
+      data-name="too hot to care graphic baby tee"
+      data-key="toohot"
+      data-sold="true"
+    >
+
+      <div class="card__swatch">
+
+        <img
+          class="card__photo"
+          src="images/too-hot-to-care-graphic-baby-tee.jpg.webp"
+          alt="Too Hot To Care Graphic Baby Tee"
+          loading="lazy"
+        >
+
+        <span class="card__tag card__tag--sold">
+          Sold Out
+        </span>
+
+        <button class="card__wish" aria-label="Save item" data-wish>
+
+          <svg viewBox="0 0 24 24">
+            <path d="M12 20s-7.5-4.6-10-9.3C.4 7.4 2 4 5.4 4c2 0 3.4 1.1 4.1 2.3.5.8.5.8 1 0C11.2 5.1 12.6 4 14.6 4 18 4 19.6 7.4 18 10.7 15.5 15.4 12 20 12 20Z"/>
+          </svg>
+
+        </button>
+
+        <svg
+          class="card__icon"
+          viewBox="0 0 48 48"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M19 9 13 11l-3 5 4 3.5-1 1.5v14h22V21l-1-1.5 4-3.5-3-5-6-2c-.6 2-2.7 3.2-5.5 3.2S19.6 11 19 9Z"/>
+        </svg>
+
+      </div>
+
+      <div class="card__body">
+
+        <div class="card__name">
+          Too Hot To Care Graphic Baby Tee
+        </div>
+
+        <div class="card__price">
+          $23.00
+        </div>
+
+        <button class="card__cta btn" disabled>
+          Sold Out
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- PRODUCT 3 -->
+
+    <article
+      class="card reveal"
+      data-name="vagabond paris boxy tee"
+      data-key="paris"
+    >
+
+      <div class="card__swatch">
+
+        <img
+          class="card__photo"
+          src="images/vagabond-paris-boxy-tee.jpg.webp"
+          alt="Vagabond Paris Boxy Tee"
+          loading="lazy"
+        >
+
+        <span class="card__tag">
+          Boxy Tee
+        </span>
+
+        <button class="card__wish" aria-label="Save item" data-wish>
+
+          <svg viewBox="0 0 24 24">
+            <path d="M12 20s-7.5-4.6-10-9.3C.4 7.4 2 4 5.4 4c2 0 3.4 1.1 4.1 2.3.5.8.5.8 1 0C11.2 5.1 12.6 4 14.6 4 18 4 19.6 7.4 18 10.7 15.5 15.4 12 20 12 20Z"/>
+          </svg>
+
+        </button>
+
+        <svg
+          class="card__icon"
+          viewBox="0 0 48 48"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M17 7 10 10 6 16l5 4.5L13 18v22h22V18l2 2.5L42 16l-4-6-7-3c-1 2.5-3.5 4-7 4s-6-1.5-7-4Z"/>
+          <line x1="20" y1="24" x2="28" y2="24"/>
+        </svg>
+
+      </div>
+
+      <div class="card__body">
+
+        <div class="card__name">
+          Vagabond Paris Boxy Tee
+        </div>
+
+        <div class="card__price">
+          $35.00
+        </div>
+
+        <button class="card__cta btn--add" data-key="paris">
+          Add to Bag
+        </button>
+
+      </div>
+
+    </article>
+
+  </div>
+
+  <p
+    id="noResults"
+    style="display:none;color:var(--grey-on-black);margin-top:1.5rem;"
+  >
+    No pieces match that search.
+  </p>
+
+</section>
+
+<section class="story reveal" id="story">
+
+  <h2 class="story__word mask">
+
+    <span class="mask__inner">
+      Built<br>
+      for the<br>
+      <em>Move.</em>
+    </span>
+
+  </h2>
+
+  <p class="story__text">
+    Vagabond exists for people who move differently.
+    <strong>Every piece starts with a feeling</strong>
+    — confidence, ambition, a little bit of rebellion —
+    and gets built into something you can wear.
+    This isn't just clothing.
+    It's a way of showing up as yourself, unapologetically.
+  </p>
+
+</section>
+
+<section class="timeline" id="timeline">
+
+  <div class="timeline__inner">
+
+    <div class="timeline__spine" aria-hidden="true">
+      <div class="timeline__spine-fill" id="timelineFill"></div>
+    </div>
+
+    <span
+      class="label"
+      style="margin-bottom:2rem;display:inline-flex;"
+    >
+      Behind The Brand
+    </span>
+
+    <div class="timeline__row reveal">
+
+      <div class="timeline__year">
+        2024
+      </div>
+
+      <div class="timeline__desc">
+        Vagabond is founded in New York City —
+        small batches, no shortcuts.
+      </div>
+
+    </div>
+
+    <div class="timeline__row reveal">
+
+      <div class="timeline__year">
+        Early&nbsp;Drops
+      </div>
+
+      <div class="timeline__desc">
+        First graphic tees designed and released in limited runs.
+      </div>
+
+    </div>
+
+    <div class="timeline__row reveal">
+
+      <div class="timeline__year">
+        2026
+      </div>
+
+      <div class="timeline__desc">
+        The full online store goes live,
+        bringing the drops to everyone.
+      </div>
+
+    </div>
+
+    <div class="timeline__row reveal">
+
+      <div class="timeline__year">
+        Now
+      </div>
+
+      <div class="timeline__desc">
+        New pieces, every season.
+        Crafted for elevation.
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="newsletter" id="join">
+
+  <div class="newsletter__bg" aria-hidden="true"></div>
+
+  <div class="newsletter__inner reveal">
+
+    <span class="label" style="justify-content:center;">
+      Stay In The Loop
+    </span>
+
+    <h2 class="newsletter__title mask">
+
+      <span class="mask__inner">
+        First access,<br>
+        every drop.
+      </span>
+
+    </h2>
+
+    <p class="newsletter__sub">
+      Release dates, restocks, and 10% off your first order.
+    </p>
+
+    <form class="newsletter__form" id="newsletterForm">
+
+      <input
+        type="email"
+        class="newsletter__input"
+        placeholder="you@email.com"
+        aria-label="Email address"
+        required
+      >
+
+      <button type="submit" class="btn btn--primary">
+        Sign Up
+      </button>
+
+    </form>
+
+    <p class="newsletter__msg" id="newsletterMsg"></p>
+
+  </div>
+
+</section>
+
+<footer class="footer">
+
+  <div class="footer__top">
+
+    <div>
+
+      <div class="footer__logo">
+        VAGABOND
+      </div>
+
+      <p class="footer__tag">
+        Crafted for elevation.<br>
+        Est. 2024 · New York City.
+      </p>
+
+    </div>
+
+    <div class="footer__cols">
+
+      <div class="footer__col">
+
+        <h4>Shop</h4>
+
+        <a href="#featured">
+          All Products
+        </a>
+
+        <a href="#featured">
+          Latest Drop
+        </a>
+
+      </div>
+
+      <div class="footer__col">
+
+        <h4>Contact</h4>
+
+        <a href="mailto:vagabondprs@gmail.com">
+          vagabondprs@gmail.com
+        </a>
+
+        <a href="tel:+19412994032">
+          (941) 299-4032
+        </a>
+
+      </div>
+
+      <div class="footer__col">
+
+        <h4>Follow</h4>
+
+        <a
+          href="https://www.instagram.com/vgbdapparel"
+          target="_blank"
+          rel="noopener"
+        >
+          Instagram
+        </a>
+
+        <a href="#">
+          TikTok
+        </a>
+
+      </div>
+
+      <div class="footer__col">
+
+        <h4>Policies</h4>
+
+        <a href="#">
+          Shipping Policy
+        </a>
+
+        <a href="#">
+          Refund Policy
+        </a>
+
+        <a href="#">
+          Terms of Service
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer__bottom">
+
+    <span>
+      © <span id="year"></span> Vagabond Apparel
+    </span>
+
+    <span>
+      Concept redesign — practice project.
+    </span>
+
+  </div>
+
+</footer>
+
+<div class="cart-overlay" id="cartOverlay">
+
+  <aside
+    class="cart-drawer"
+    role="dialog"
+    aria-label="Shopping bag"
+  >
+
+    <div class="cart-drawer__head">
+
+      <h3>
+        Your Bag
+      </h3>
+
+      <button
+        class="cart-drawer__close"
+        id="cartCloseBtn"
+        aria-label="Close bag"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+        >
+          <line x1="5" y1="5" x2="19" y2="19"/>
+          <line x1="19" y1="5" x2="5" y2="19"/>
+        </svg>
+
+      </button>
+
+    </div>
+
+    <div class="cart-drawer__ship">
+
+      <p id="shipMsg">
+        Add $75.00 for free shipping
+      </p>
+
+      <div class="cart-drawer__bar">
+
+        <div
+          class="cart-drawer__bar-fill"
+          id="shipFill"
+        ></div>
+
+      </div>
+
+    </div>
+
+    <div
+      class="cart-drawer__items"
+      id="cartItems"
+    >
+
+      <p
+        class="cart-drawer__empty"
+        id="cartEmpty"
+      >
+        Your bag is empty.
+      </p>
+
+    </div>
+
+    <div class="cart-drawer__footer">
+
+      <div class="cart-drawer__subtotal">
+
+        <span>
+          Subtotal
+        </span>
+
+        <span id="cartSubtotal">
+          $0.00
+        </span>
+
+      </div>
+
+      <button
+        class="btn btn--primary"
+        id="checkoutBtn"
+        style="width:100%;"
+      >
+        Checkout
+      </button>
+
+      <p
+        class="cart-drawer__note"
+        id="checkoutNote"
+      ></p>
+
+    </div>
+
+  </aside>
+
+</div>
+
+<div
+  class="modal-overlay"
+  id="modalOverlay"
+  style="
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.7);
+    z-index:600;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .3s ease;
+  "
+>
+
+  <div
+    class="newsletter__inner"
+    style="transform:none;max-width:420px;"
+  >
+
+    <button
+      id="modalCloseBtn"
+      aria-label="Close"
+      style="position:absolute;top:18px;right:18px;padding:.4rem;"
+    >
+
+      <svg
+        viewBox="0 0 24 24"
+        width="18"
+        height="18"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      >
+        <line x1="5" y1="5" x2="19" y2="19"/>
+        <line x1="19" y1="5" x2="5" y2="19"/>
+      </svg>
+
+    </button>
+
+    <span
+      class="label"
+      style="justify-content:center;"
+    >
+      Welcome to Vagabond
+    </span>
+
+    <h3
+      class="newsletter__title"
+      style="font-size:1.7rem;"
+    >
+      10% off your first order.
+    </h3>
+
+    <p class="newsletter__sub">
+      Sign up and we'll send your code.
+    </p>
+
+    <form
+      id="modalForm"
+      class="newsletter__form"
+      style="max-width:100%;"
+    >
+
+      <input
+        type="text"
+        class="newsletter__input"
+        placeholder="First name"
+        id="modalName"
+        required
+        style="flex-basis:100%;"
+      >
+
+      <input
+        type="email"
+        class="newsletter__input"
+        placeholder="Email"
+        id="modalEmail"
+        required
+        style="flex-basis:100%;"
+      >
+
+      <button
+        type="submit"
+        class="btn btn--primary"
+        style="width:100%;"
+      >
+        Sign Me Up
+      </button>
+
+    </form>
+
+    <p
+      class="newsletter__msg"
+      id="modalMsg"
+    ></p>
+
+  </div>
+
+</div>
+
+<script>
+
+const isFinePointer =
+  window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+const reduceMotion =
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+
+/* ---- Custom cursor ---- */
+
+if (isFinePointer && !reduceMotion) {
+
+  const cursor =
+    document.getElementById('cursor');
+
+  let tx=0,
+      ty=0,
+      cx=0,
+      cy=0;
+
+  window.addEventListener('mousemove', e => {
+
+    tx = e.clientX;
+    ty = e.clientY;
+
+  });
+
+  (function loop(){
+
+    cx += (tx-cx)*0.2;
+    cy += (ty-cy)*0.2;
+
+    cursor.style.transform =
+      `translate(${cx}px,${cy}px) translate(-50%,-50%)`;
+
+    requestAnimationFrame(loop);
+
+  })();
+
+  document
+    .querySelectorAll('a, button, input')
+    .forEach(el => {
+
+      el.addEventListener(
+        'mouseenter',
+        () => cursor.classList.add('is-active')
+      );
+
+      el.addEventListener(
+        'mouseleave',
+        () => cursor.classList.remove('is-active')
+      );
+
+    });
+
+} else {
+
+  const cursor =
+    document.getElementById('cursor');
+
+  if(cursor){
+    cursor.style.display='none';
+  }
+
+}
+
+
+/* ---- Magnetic buttons ---- */
+
+if(isFinePointer && !reduceMotion){
+
+  document
+    .querySelectorAll('.magnetic')
+    .forEach(el => {
+
+      el.addEventListener('mousemove', e => {
+
+        const r =
+          el.getBoundingClientRect();
+
+        const x =
+          e.clientX - r.left - r.width/2;
+
+        const y =
+          e.clientY - r.top - r.height/2;
+
+        el.style.transform =
+          `translate(${x*0.3}px, ${y*0.3}px)`;
+
+      });
+
+      el.addEventListener(
+        'mouseleave',
+        () => {
+          el.style.transform = '';
+        }
+      );
+
+    });
+
+}
+
+
+/* ---- Card tilt ---- */
+
+if(isFinePointer && !reduceMotion){
+
+  document
+    .querySelectorAll('.card')
+    .forEach(card => {
+
+      card.addEventListener('mousemove', e => {
+
+        const r =
+          card.getBoundingClientRect();
+
+        const px =
+          (e.clientX-r.left)/r.width-0.5;
+
+        const py =
+          (e.clientY-r.top)/r.height-0.5;
+
+        card.style.transform =
+          `perspective(900px)
+           rotateY(${px*6}deg)
+           rotateX(${-py*6}deg)
+           translateY(-6px)`;
+
+      });
+
+      card.addEventListener(
+        'mouseleave',
+        () => {
+          card.style.transform='';
+        }
+      );
+
+    });
+
+}
+
+
+/* ---- Scroll effects ---- */
+
+const nav =
+  document.getElementById('nav');
+
+const heroBg =
+  document.querySelector('.hero__bg');
+
+const scrollProgress =
+  document.getElementById('scrollProgress');
+
+const storyWord =
+  document.querySelector('.story__word');
+
+const timelineSection =
+  document.getElementById('timeline');
+
+const timelineFill =
+  document.getElementById('timelineFill');
+
+let scrollTicking = false;
+
+function updateOnScroll(){
+
+  const y =
+    window.scrollY;
+
+  nav.classList.toggle(
+    'is-solid',
+    y > 40
+  );
+
+  const docH =
+    document.documentElement.scrollHeight -
+    window.innerHeight;
+
+  scrollProgress.style.width =
+    (docH > 0
+      ? Math.min(100,(y/docH)*100)
+      : 0
+    ) + '%';
+
+  if(!reduceMotion){
+
+    if(heroBg){
+
+      heroBg.style.transform =
+        `translateY(${y*0.25}px)`;
+
+    }
+
+    if(storyWord){
+
+      const r =
+        storyWord.getBoundingClientRect();
+
+      const vh =
+        window.innerHeight;
+
+      const progress =
+        Math.min(
+          1,
+          Math.max(
+            0,
+            1-(r.top/vh)
+          )
+        );
+
+      storyWord.style.transform =
+        `translateY(${(1-progress)*26}px)`;
+
+    }
+
+    if(timelineSection && timelineFill){
+
+      const r =
+        timelineSection.getBoundingClientRect();
+
+      const vh =
+        window.innerHeight;
+
+      const raw =
+        (vh-r.top) /
+        (vh+r.height);
+
+      const progress =
+        Math.min(
+          1,
+          Math.max(0,raw)
+        );
+
+      timelineFill.style.height =
+        (progress*100)+'%';
+
+    }
+
+  }
+
+  scrollTicking=false;
+
+}
+
+window.addEventListener(
+  'scroll',
+  () => {
+
+    if(!scrollTicking){
+
+      requestAnimationFrame(
+        updateOnScroll
+      );
+
+      scrollTicking=true;
+
+    }
+
+  }
+);
+
+updateOnScroll();
+
+
+/* ---- Side menu ---- */
+
+const menuOverlay =
+  document.getElementById('menuOverlay');
+
+document
+  .getElementById('menuOpenBtn')
+  .addEventListener(
+    'click',
+    () => menuOverlay.classList.add('is-open')
+  );
+
+document
+  .getElementById('menuCloseBtn')
+  .addEventListener(
+    'click',
+    () => menuOverlay.classList.remove('is-open')
+  );
+
+menuOverlay.addEventListener(
+  'click',
+  e => {
+
+    if(e.target===menuOverlay){
+
+      menuOverlay.classList.remove(
+        'is-open'
+      );
+
+    }
+
+  }
+);
+
+document
+  .querySelectorAll('.menu-panel__links a')
+  .forEach(a => {
+
+    a.addEventListener(
+      'click',
+      () => menuOverlay.classList.remove('is-open')
+    );
+
+  });
+
+
+/* ---- Search overlay ---- */
+
+const searchOverlay =
+  document.getElementById('searchOverlay');
+
+const searchInput =
+  document.getElementById('searchInput');
+
+const searchResults =
+  document.getElementById('searchResults');
+
+document
+  .getElementById('searchOpenBtn')
+  .addEventListener(
+    'click',
+    () => {
+
+      searchOverlay.classList.add(
+        'is-open'
+      );
+
+      setTimeout(
+        () => searchInput.focus(),
+        300
+      );
+
+    }
+  );
+
+document
+  .getElementById('searchCloseBtn')
+  .addEventListener(
+    'click',
+    () => searchOverlay.classList.remove('is-open')
+  );
+
+document.addEventListener(
+  'keydown',
+  e => {
+
+    if(e.key==='Escape'){
+
+      searchOverlay.classList.remove(
+        'is-open'
+      );
+
+      menuOverlay.classList.remove(
+        'is-open'
+      );
+
+      cartOverlay.classList.remove(
+        'is-open'
+      );
+
+      modalOverlay.classList.remove(
+        'is-open'
+      );
+
+    }
+
+  }
+);
+
+const cards =
+  document.querySelectorAll('.card');
+
+const noResults =
+  document.getElementById('noResults');
+
+searchInput.addEventListener(
+  'input',
+  () => {
+
+    const q =
+      searchInput.value
+        .trim()
+        .toLowerCase();
+
+    if(!q){
+
+      searchResults.textContent='';
+
+      return;
+
+    }
+
+    const matches =
+      [...cards].filter(
+        c => c.dataset.name.includes(q)
+      );
+
+    searchResults.textContent =
+      matches.length
+        ? `${matches.length} result${matches.length>1?'s':''} — press Enter to view`
+        : 'No matches found';
+
+  }
+);
+
+searchInput.addEventListener(
+  'keydown',
+  e => {
+
+    if(e.key==='Enter'){
+
+      const q =
+        searchInput.value
+          .trim()
+          .toLowerCase();
+
+      let visible=0;
+
+      cards.forEach(c => {
+
+        const match =
+          !q ||
+          c.dataset.name.includes(q);
+
+        c.style.display =
+          match ? '' : 'none';
+
+        if(match){
+          visible++;
+        }
+
+      });
+
+      noResults.style.display =
+        visible===0
+          ? 'block'
+          : 'none';
+
+      searchOverlay.classList.remove(
+        'is-open'
+      );
+
+      document
+        .getElementById('featured')
+        .scrollIntoView({
+          behavior:'smooth'
+        });
+
+    }
+
+  }
+);
+
+
+/* ---- Product data + cart ---- */
+
+const PRODUCTS = {
+
+  baddie:{
+    name:'Baddie Addicted Graphic Boxy Tee',
+    price:35
+  },
+
+  paris:{
+    name:'Vagabond Paris Boxy Tee',
+    price:35
+  }
+
+};
+
+let cart=[];
+
+const cartOverlay =
+  document.getElementById('cartOverlay');
+
+const cartCountEl =
+  document.getElementById('cartCount');
+
+const cartItemsEl =
+  document.getElementById('cartItems');
+
+const cartEmptyEl =
+  document.getElementById('cartEmpty');
+
+const cartSubtotalEl =
+  document.getElementById('cartSubtotal');
+
+const shipFillEl =
+  document.getElementById('shipFill');
+
+const shipMsgEl =
+  document.getElementById('shipMsg');
+
+const FREE_SHIP=75;
+
+
+function renderCart(){
+
+  cartItemsEl
+    .querySelectorAll('.cart-item')
+    .forEach(n => n.remove());
+
+  if(cart.length===0){
+
+    cartEmptyEl.style.display='block';
+
+  } else {
+
+    cartEmptyEl.style.display='none';
+
+    cart.forEach(
+      (key,idx) => {
+
+        const p =
+          PRODUCTS[key];
+
+        const row =
+          document.createElement('div');
+
+        row.className='cart-item';
+
+        row.innerHTML =
+          `<div>
+            <div class="cart-item__name">
+              ${p.name}
+            </div>
+            <div class="cart-item__price">
+              $${p.price.toFixed(2)}
+            </div>
+            <button
+              class="cart-item__remove"
+              data-idx="${idx}"
+            >
+              Remove
+            </button>
+          </div>`;
+
+        cartItemsEl.appendChild(row);
+
+      }
+    );
+
+  }
+
+  const subtotal =
+    cart.reduce(
+      (s,k) => s+PRODUCTS[k].price,
+      0
+    );
+
+  cartSubtotalEl.textContent =
+    `$${subtotal.toFixed(2)}`;
+
+  cartCountEl.textContent =
+    String(cart.length);
+
+  cartCountEl.classList.toggle(
+    'is-visible',
+    cart.length>0
+  );
+
+  const remaining =
+    Math.max(
+      0,
+      FREE_SHIP-subtotal
+    );
+
+  shipFillEl.style.width =
+    `${Math.min(
+      100,
+      (subtotal/FREE_SHIP)*100
+    )}%`;
+
+  shipMsgEl.textContent =
+    remaining>0
+      ? `Add $${remaining.toFixed(2)} for free shipping`
+      : "You've unlocked free shipping";
+
+}
+
+
+cartItemsEl.addEventListener(
+  'click',
+  e => {
+
+    if(
+      e.target.matches(
+        '.cart-item__remove'
+      )
+    ){
+
+      cart.splice(
+        Number(
+          e.target.dataset.idx
+        ),
+        1
+      );
+
+      renderCart();
+
+    }
+
+  }
+);
+
+
+document
+  .querySelectorAll('.btn--add')
+  .forEach(btn => {
+
+    btn.addEventListener(
+      'click',
+      () => {
+
+        cart.push(
+          btn.dataset.key
+        );
+
+        renderCart();
+
+        const original =
+          btn.textContent;
+
+        btn.textContent =
+          'Added ✓';
+
+        setTimeout(
+          () => {
+            btn.textContent =
+              original;
+          },
+          1200
+        );
+
+      }
+    );
+
+  });
+
+
+document
+  .getElementById('cartOpenBtn')
+  .addEventListener(
+    'click',
+    () => cartOverlay.classList.add('is-open')
+  );
+
+document
+  .getElementById('cartCloseBtn')
+  .addEventListener(
+    'click',
+    () => cartOverlay.classList.remove('is-open')
+  );
+
+cartOverlay.addEventListener(
+  'click',
+  e => {
+
+    if(e.target===cartOverlay){
+
+      cartOverlay.classList.remove(
+        'is-open'
+      );
+
+    }
+
+  }
+);
+
+
+document
+  .getElementById('checkoutBtn')
+  .addEventListener(
+    'click',
+    () => {
+
+      document
+        .getElementById('checkoutNote')
+        .textContent =
+          cart.length
+            ? 'Demo only — connect a payment processor to enable real checkout.'
+            : 'Your bag is empty.';
+
+    }
+  );
+
+renderCart();
+
+
+/* ---- Wishlist ---- */
+
+let wishCount=0;
+
+const wishCountEl =
+  document.getElementById('wishCount');
+
+document
+  .querySelectorAll('[data-wish]')
+  .forEach(btn => {
+
+    btn.addEventListener(
+      'click',
+      () => {
+
+        const saved =
+          btn.classList.toggle(
+            'is-saved'
+          );
+
+        wishCount +=
+          saved ? 1 : -1;
+
+        wishCountEl.textContent =
+          String(wishCount);
+
+        wishCountEl.classList.toggle(
+          'is-visible',
+          wishCount>0
+        );
+
+      }
+    );
+
+  });
+
+
+/* ---- Discount modal ---- */
+
+const modalOverlay =
+  document.getElementById('modalOverlay');
+
+const openModal =
+  () => {
+
+    modalOverlay.style.opacity='1';
+
+    modalOverlay.style.pointerEvents=
+      'auto';
+
+    document
+      .getElementById('modalName')
+      .focus();
+
+  };
+
+const closeModal =
+  () => {
+
+    modalOverlay.style.opacity='0';
+
+    modalOverlay.style.pointerEvents=
+      'none';
+
+  };
+
+
+document
+  .getElementById('heroDiscountBtn')
+  .addEventListener(
+    'click',
+    openModal
+  );
+
+document
+  .getElementById('menuDiscountBtn')
+  .addEventListener(
+    'click',
+    () => {
+
+      menuOverlay.classList.remove(
+        'is-open'
+      );
+
+      openModal();
+
+    }
+  );
+
+document
+  .getElementById('modalCloseBtn')
+  .addEventListener(
+    'click',
+    closeModal
+  );
+
+modalOverlay.addEventListener(
+  'click',
+  e => {
+
+    if(e.target===modalOverlay){
+
+      closeModal();
+
+    }
+
+  }
+);
+
+
+document
+  .getElementById('modalForm')
+  .addEventListener(
+    'submit',
+    e => {
+
+      e.preventDefault();
+
+      const email =
+        document
+          .getElementById('modalEmail')
+          .value
+          .trim();
+
+      const name =
+        document
+          .getElementById('modalName')
+          .value
+          .trim();
+
+      const msg =
+        document
+          .getElementById('modalMsg');
+
+      const valid =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+        &&
+        name.length>0;
+
+      if(valid){
+
+        msg.textContent =
+          `You're in, ${name}. Check your inbox for your code.`;
+
+        msg.classList.remove(
+          'is-error'
+        );
+
+        msg.classList.add(
+          'is-ok'
+        );
+
+        setTimeout(
+          closeModal,
+          1800
+        );
+
+      } else {
+
+        msg.textContent =
+          'Enter your name and a valid email.';
+
+        msg.classList.remove(
+          'is-ok'
+        );
+
+        msg.classList.add(
+          'is-error'
+        );
+
+      }
+
+    }
+  );
+
+
+setTimeout(
+  () => {
+
+    if(
+      modalOverlay.style.opacity!=='1'
+    ){
+
+      openModal();
+
+    }
+
+  },
+  4500
+);
+
+
+/* ---- Newsletter ---- */
+
+const form =
+  document.getElementById(
+    'newsletterForm'
+  );
+
+const nmsg =
+  document.getElementById(
+    'newsletterMsg'
+  );
+
+form.addEventListener(
+  'submit',
+  e => {
+
+    e.preventDefault();
+
+    const valid =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+        form
+          .querySelector('input')
+          .value
+          .trim()
+      );
+
+    if(valid){
+
+      nmsg.textContent =
+        "You're on the list.";
+
+      nmsg.className =
+        'newsletter__msg is-ok';
+
+      form.reset();
+
+    } else {
+
+      nmsg.textContent =
+        'Enter a valid email address.';
+
+      nmsg.className =
+        'newsletter__msg is-error';
+
+    }
+
+  }
+);
+
+
+/* ---- Scroll reveal ---- */
+
+const revealEls =
+  document.querySelectorAll(
+    '.reveal'
+  );
+
+const staggerGroups = [
+  '#productGrid',
+  '.timeline__inner',
+  '.footer__cols'
+];
+
+staggerGroups.forEach(
+  sel => {
+
+    document
+      .querySelectorAll(
+        `${sel} > *`
+      )
+      .forEach(
+        (child,i) => {
+
+          if(
+            child.classList.contains(
+              'reveal'
+            )
+          ){
+
+            child.style.transitionDelay =
+              (i*0.09)+'s';
+
+          }
+
+        }
+      );
+
+  }
+);
+
+
+const maskEls =
+  document.querySelectorAll(
+    '.mask'
+  );
+
+
+if(
+  'IntersectionObserver'
+  in window
+){
+
+  const io =
+    new IntersectionObserver(
+      entries => {
+
+        entries.forEach(
+          en => {
+
+            if(
+              en.isIntersecting
+            ){
+
+              en.target.classList.add(
+                'is-visible'
+              );
+
+              io.unobserve(
+                en.target
+              );
+
+            }
+
+          }
+        );
+
+      },
+      {
+        threshold:0.15
+      }
+    );
+
+  revealEls.forEach(
+    el => io.observe(el)
+  );
+
+  maskEls.forEach(
+    el => io.observe(el)
+  );
+
+} else {
+
+  revealEls.forEach(
+    el =>
+      el.classList.add(
+        'is-visible'
+      )
+  );
+
+  maskEls.forEach(
+    el =>
+      el.classList.add(
+        'is-visible'
+      )
+  );
+
+}
+
+
+document
+  .getElementById('year')
+  .textContent =
+    new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
